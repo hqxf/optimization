@@ -1,0 +1,14 @@
+css选择器性能优化
+	样式系统从最右边的选择符开始向左进行匹配，只要当前选择符的左边还有其他选择符，样式系统会继续向左移动，知道找到和规则匹配的元素，或者因为不匹配而退出
+
+	1.css3选择器很消耗性能
+	2.css选择器性能从到到底排序
+		id>class>h1,p..>h1+p...>(ul>li)>li a>*>a[href="ddd"]>a:hover
+	3.不要使用div#demo    同jQuery
+	4.不要使用div.demo    反jquery
+	5.div>a 好于 div a
+	6.用命名替代子或后代选择器 .div-text-a  代替 .div-text a
+	7.尽量使用继承，避免样式重复
+		继承的选择器主要有 font-
+						   text-
+						   line-height
