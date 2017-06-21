@@ -1,0 +1,86 @@
+1.避免全局查找
+	作用域链查找，消耗性能
+
+2.定时器
+	用setInterval，而不用setTimeout，因为setTimeout每一次都会初始化一个定时器，而setInterval只会在开始的时候初始化一个定时器
+
+3.字符串连接
+	如果要连接多个字符串，应该减少使用+=
+
+	如果是收集字符串  先存到数组里  在join(“”)拼成字符串
+
+4.避免with语句  （什么是with语句???????????????????）
+	width语句会创建自己的作用域，因此会增加其中执行的代码的作用域长度
+
+5.数字转换成字符串性能比较
+	（“”+123）>String()>.toString()>new String()
+
+6.parseInt()其实是用于将字符串转换成数字，而不是浮点数和整型之间的转换，应该用Math.round()和Math.floor()
+
+7.对个类型的声明用一个var，
+	如：var a,b,c;
+
+8.出入迭代器
+	var name=arr[i];i++  => var name=arr[i++]
+
+9.数组和对象使用直接量
+	
+10.删除节点用innerHTML
+	不用removeChild，在sIEve（内存泄漏监测工具）中的监测结果是，removeChild无法有效的释放dom节点
+
+11.使用代理事件 委托
+	
+
+12.优化循环
+	大多数循环使用一个从0开始、增加到某个特定值的迭代器，在很多情况下，从最大值开始，在循环中不断的减值的迭代器更加高效
+
+	简化终止条件
+	
+	后测试循环 do{}while（）
+	前测试循环for in   for（；；） while
+		循环性能排序 dowhile》while》for》for in
+	
+14.避免双重解释  也就是 尽量减少eval函数的使用
+	消耗性能、安全性低
+
+15.不要使用Function函数
+	缩短否定检测
+
+
+16.使用条件分支
+	一个用三目运算，多个用switch，性能都高于if
+
+17.避免全局变量（闭包、立即执行函数）
+
+18.循环引用
+	function init(){
+		var el=document.getElementById("#demo");
+		el.onclcik=function(){};
+		el=null;   //及时释放对dom对象的引用，从而打断循环利用
+	}
+
+	//需要返回dom
+	function init(){
+		var el=document.getElementById("#demo");
+		el.onclick=function(){};
+		try{
+			return el;
+		}finally{
+			el=null;
+		}
+	}
+
+19.释放dom元素占用的内存
+	dom.innerHTML=‘’
+
+20.释放js对象
+	obj=null;
+	arr.splice()
+21.松散耦合
+	
+
+性能方面注意事项
+	1、尽量使用原生方法
+	2、switch语句相对于if较快
+		通过case语句按照最可能的到最不可能的顺序进行组织
+	3、位运算较快
